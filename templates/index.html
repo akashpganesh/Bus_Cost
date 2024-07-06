@@ -59,24 +59,8 @@
                 <input type="submit" value="Submit">
             </form>
         </div>
-        {% if bus_list %}
-            {% for bus in bus_list %}
-                <div class="output-container">
-                    <div class="body-container">
-                        <h2>{{bus['busName']}}</h2>
-                        <div class="output-details">
-                            <p><b>Starting Point : </b>{{bus['busFrom']}}</p>
-                            <p><b>Destination : </b>{{bus['busTo']}}</p>
-                            <p><b>Time : </b>{{bus['startTime']}}</p>
-                            <p><b>Cost : </b>{{bus['cost']}}</p>
-                        </div>
-                    </div>
-                    <div class="button-container">
-                        <button>Book Now</button>
-                    </div>
-                </div>
-            {% endfor %}
-        {% endif %}
+        <div id="out-content"></div>
     </div>
 </body>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </html>
