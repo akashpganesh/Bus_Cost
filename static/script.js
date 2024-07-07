@@ -28,7 +28,6 @@ form.addEventListener('submit', (event) => {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Response from server:', data);
         var content = '';
         if (data.bus_list && data.bus_list.length > 0) {
             for(i = 0 ; i < data.bus_list.length; i++){

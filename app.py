@@ -1,5 +1,6 @@
 from flask import Flask, jsonify,render_template,request
 from pymongo import MongoClient
+from Algortithms.gradient_boost_regressor import minimal_cost
 
 app = Flask(__name__)
 
@@ -23,9 +24,11 @@ def process():
     ac_type = data.get('ac_type')
     bus_type = data.get('bus_type')
     cost = float(data.get('cost'))
-    bus_list = list(buses.find({"busFrom" : bus_from, "busTo" : bus_to, "acNonAc" : ac_type, "busType" : bus_type, 'cost' : {'$lte' : cost}}))
+    bus_list = list(buses.find({"busFrom" : bus_from, "busTo" : bus_to, "acNonAc" : ac_type, "busType" : bus_type}))
     for bus in bus_list:
         bus['_id'] = str(bus['_id'])
+    if bus_list:
+        bus_list = minimal_cost(bus_list,cost)
     return jsonify({'status': 'success', 'bus_list': bus_list})
 
 if __name__ == '__main__':
