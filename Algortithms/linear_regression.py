@@ -14,7 +14,6 @@ def calculate_duration(start, end):
 
 def minimal_cost(data,cost):
     df = pd.DataFrame(data)
-    # df = df.drop(columns=['_id'])
     df.dropna(axis=0, inplace=True)
     df.reset_index(drop=True, inplace=True)
     df['duration'] = df.apply(lambda row: calculate_duration(row['startTime'], row['endTime']), axis=1)
@@ -41,6 +40,6 @@ def minimal_cost(data,cost):
 
     df['cost_diff'] = np.abs(df['predicted_costs'] - cost)
     df_sorted = df.sort_values(by='cost_diff')
-    recommended_buses = df_sorted.head(50)
+    recommended_buses = df_sorted.head(20)
 
     return recommended_buses.to_dict(orient='records')

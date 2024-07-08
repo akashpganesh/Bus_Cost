@@ -36,7 +36,6 @@ def minimal_cost(data,cost):
 
     predicted_costs = model.predict(features)
     df['predicted_costs'] = predicted_costs
-    # recommended_buses = df[predicted_costs <= cost]
 
     df['cost_diff'] = np.abs(df['predicted_costs'] - cost)
     df_sorted = df.sort_values(by='cost_diff')

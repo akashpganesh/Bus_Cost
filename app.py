@@ -1,6 +1,6 @@
 from flask import Flask, jsonify,render_template,request
 from pymongo import MongoClient
-from Algortithms.gradient_boost_regressor import minimal_cost
+from Algortithms.random_forest_regressor import minimal_cost
 
 app = Flask(__name__)
 
